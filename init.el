@@ -105,5 +105,9 @@
 ;; org-mode
 (load (concat config-dir "rc-org.el"))
 
+;; php mode
+(autoload 'php-mode "php-mode" "Major mode for editing php code." t)
+(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
+
 ;; start server
 (server-start)
