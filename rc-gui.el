@@ -1,3 +1,18 @@
+(require 'color-theme)
+(color-theme-initialize)
+;;(color-theme-standart)
+;;(color-theme-charcoal-black)
+
+;; theme like in emacs
+(load (concat config-dir "vendor/color-theme-idle-fingers.el"))
+(color-theme-idle-fingers)
+
+(setq org-todo-keyword-faces
+'(("TODO" . (:foreground "red" :weight bold))
+("WAIT" . (:foreground "orange" :weight bold))
+("DONE" . (:foreground "green" :weight bold)))
+)
+
 ;; turn on column number mode
 (column-number-mode t)
 
