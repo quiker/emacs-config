@@ -1,7 +1,5 @@
 (require 'color-theme)
 (color-theme-initialize)
-;;(color-theme-standart)
-;;(color-theme-charcoal-black)
 
 ;; theme like in emacs
 (load (concat config-dir "vendor/color-theme-idle-fingers.el"))
