@@ -5,11 +5,12 @@
 (load (concat config-dir "vendor/color-theme-idle-fingers.el"))
 (color-theme-idle-fingers)
 
+;; some customizations for org-mode
 (setq org-todo-keyword-faces
-'(("TODO" . (:foreground "red" :weight bold))
-("WAIT" . (:foreground "orange" :weight bold))
-("DONE" . (:foreground "green" :weight bold)))
-)
+      '(("TODO" . (:foreground "red" :weight bold))
+        ("WAIT" . (:foreground "orange" :weight bold))
+        ("DONE" . (:foreground "green" :weight bold)))
+      )
 
 ;; turn on column number mode
 (column-number-mode t)
