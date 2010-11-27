@@ -1,3 +1,5 @@
+;; color-theme
+(add-to-list 'load-path (concat config-dir "vendor/color-theme"))
 (require 'color-theme)
 (color-theme-initialize)
 
