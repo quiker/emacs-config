@@ -9,10 +9,9 @@
 
 ;; some customizations for org-mode
 (setq org-todo-keyword-faces
-      '(("TODO" . (:foreground "red" :weight bold))
-        ("WAIT" . (:foreground "orange" :weight bold))
-        ("DONE" . (:foreground "green" :weight bold)))
-      )
+       '(("TODO" . (:foreground "red" :weight bold))
+         ("WAIT" . (:foreground "orange" :weight bold))
+         ("DONE" . (:foreground "green" :weight bold))))
 
 ;; turn on column number mode
 (column-number-mode t)
@@ -36,11 +35,11 @@
 (global-hl-line-mode t)
 
 ;; light colors
-(custom-set-faces
- '(default ((t (:background "grey90" :foreground "black"))))
- '(font-lock-comment-face ((((class color) (min-colors 88) (background light))
-                            (:foreground "gray50"))))
- '(org-hide ((((background light)) (:foreground "grey90")))))
+;;(custom-set-faces
+;; '(default ((t (:background "grey90" :foreground "black"))))
+;; '(font-lock-comment-face ((((class color) (min-colors 88) (background light))
+;;                            (:foreground "gray50"))))
+;; '(org-hide ((((background light)) (:foreground "grey90")))))
 
 ;; TextMate idleFingers
 ;; (custom-set-faces

@@ -10,6 +10,9 @@
 (global-set-key (kbd "<s-return>") 'open-next-line)
 (global-set-key (kbd "<M-backspace>") 'my-backward-delete-word)
 
+;; nav
+(global-set-key (kbd "C-c n") 'nav-toggle)
+
 ;; comment or uncomment region
 (global-set-key (kbd "C-c /") 'comment-or-uncomment-region)
 

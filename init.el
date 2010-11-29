@@ -6,13 +6,22 @@
 (setq config-dir (file-name-directory
                   (or (buffer-file-name) load-file-name)))
 
-;; environment settings
-(if (file-exists-p (concat config-dir "env.el"))
-    (load (concat config-dir "env.el")))
+(defmacro load-config (filename)
+  `(load (concat config-dir ,filename)))
 
-(setq system-specific-config (concat config-dir system-name ".el"))
-(if (file-exists-p system-specific-config)
-    (load system-specific-config))
+(defmacro load-configs (&rest filenames)
+  `(progn
+     ,@(mapcar #'(lambda (f)
+                   `(load-config ,f))
+               filenames)))
+
+(defmacro load-config-if-exists (filename)
+  `(if (file-exists-p (concat config-dir ,filename))
+       (load-config ,filename)))
+
+;; environment settings
+(load-config-if-exists "env.el")
+(load-config-if-exists (concat system-name ".el"))
 
 ;; vendor
 (add-to-list 'load-path (concat config-dir "vendor"))
@@ -73,41 +82,65 @@
 ;; show empty lines
 (setq-default indicate-empty-lines t)
 
+;; Truncate, do not wrap lines
+(setq-default truncate-lines t)
+
 ;; uniquify buffer names
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
+
+;; always linum-mode
+(defun linum-mode-find-file-hook ()
+  (linum-mode t))
+(add-hook 'find-file-hook 'linum-mode-find-file-hook)
 
 ;; recent files
 (require 'recentf)
 (recentf-mode 1)
 
+;; winner mode
+(require 'winner)
+(setq winner-dont-bind-my-keys t)
+(global-set-key (kbd "<C-s-left>") 'winner-undo)
+(global-set-key (kbd "<C-s-right>") 'winner-redo)
+(winner-mode t)
+
 ;; gui options
-(load (concat config-dir "rc-gui.el"))
+(load-config "rc-gui.el")
 
 ;; custom functions
-(load (concat config-dir "rc-defuns.el"))
+(load-config "rc-defuns.el")
 
 ;; custom hotkeys
-(load (concat config-dir "rc-hotkeys.el"))
+(load-config "rc-hotkeys.el")
 
 ;; misc modes
-(load (concat config-dir "rc-misc.el"))
+(load-config "rc-misc.el")
 
 ;; programming languages
-(load (concat config-dir "rc-ruby.el"))
-(load (concat config-dir "rc-erlang.el"))
-(load (concat config-dir "rc-js.el"))
-(load (concat config-dir "rc-haskell.el"))
+(load-configs "rc-ruby.el"
+              "rc-erlang.el"
+              "rc-js.el"
+              "rc-haskell.el")
 
 ;; spell checking
-(load (concat config-dir "rc-spell.el"))
+(load-config "rc-spell.el")
 
 ;; org-mode
-(load (concat config-dir "rc-org.el"))
+(load-config "rc-org.el")
 
 ;; php mode
 (autoload 'php-mode "php-mode" "Major mode for editing php code." t)
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 
+(require 'desktop)
+(desktop-save-mode 1)
+(add-hook 'auto-save-hook (lambda () (desktop-save-in-desktop-dir)))
+
+;; auto reloading of chanded files from disk
+(auto-revert-mode t)
+
 ;; start server
-(server-start)
+(require 'server)
+(when (not (server-running-p))
+  (server-start))
