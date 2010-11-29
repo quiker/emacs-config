@@ -144,3 +144,6 @@
 (require 'server)
 (when (not (server-running-p))
   (server-start))
+
+;; set font size
+(set-face-attribute 'default nil :height 90)
