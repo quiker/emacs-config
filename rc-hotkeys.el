@@ -28,11 +28,16 @@
 ;; find recent files
 (global-set-key (kbd "C-x f") 'recentf-ido-find-file)
 
- ;; switch windows with C-left, C-right, C-up, C-down
+;; switch windows with C-left, C-right, C-up, C-down
 (windmove-default-keybindings 'control)
 
 ;; undo
 (global-set-key (kbd "C-z") 'undo)
+
+;; cut/copy/paste to/from system buffer
+(global-set-key (kbd "C-S-x") 'clipboard-kill-region)
+(global-set-key (kbd "C-S-c") 'clipboard-kill-ring-save)
+(global-set-key (kbd "C-S-v") 'x-clipboard-yank)
 
 ;; open next line
 (defun open-next-line (arg)
