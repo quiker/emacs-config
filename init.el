@@ -89,11 +89,6 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
-;; always linum-mode
-(defun linum-mode-find-file-hook ()
-  (linum-mode t))
-(add-hook 'find-file-hook 'linum-mode-find-file-hook)
-
 ;; recent files
 (require 'recentf)
 (recentf-mode 1)
