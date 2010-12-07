@@ -89,3 +89,7 @@ Symbols matching the text at point are put first in the completion list."
     (call-interactively 'grep)
     (setq ack-history             grep-history
           ack-host-defaults-alist grep-host-defaults-alist)))
+
+(defun org-my()
+  (interactive)
+  (find-file "~/q3ker.org"))
